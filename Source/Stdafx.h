@@ -1,9 +1,14 @@
 #ifndef PRECOMPILED_HEADER
 #define PRECOMPILED_HEADER
 
+#include <algorithm>
 #include <cstdlib>
 #include <iostream>
+#include <map>
+#include <random>
+#include <set>
 #include <string>
+#include <time.h>
 #include <vector>
 #include <unordered_map>
 

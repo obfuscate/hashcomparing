@@ -32,20 +32,21 @@ namespace
  * Function : CreateDictionary
  * Purpose  :
  */
-void Utils::CreateDictionary(const int                      pNbOfWords,
-                             const String&                  pAlphabet,
-                             unordered_map<String, String>& rDictionary)
+void Utils::CreateDictionary(const int       pNbOfWords,
+                             const String&   pAlphabet,
+                             vector<String>& rDictionary)
 {
   const Char firstSymbol = pAlphabet[0];
   const Char lastSymbol = pAlphabet[pAlphabet.length() - 1];
+  const int minLength = 5;
 
-  String word(2, firstSymbol);
+  String word(minLength, firstSymbol);
   for (int i = 0; i < pNbOfWords;)
   {
     String lastWord(word.length(), lastSymbol);
     while (word != lastWord)
     {
-      rDictionary[word] = __TEXT("Reverse: ") + String(word.crbegin(), word.crend());
+      rDictionary.push_back(word);
 
       ++i;
 

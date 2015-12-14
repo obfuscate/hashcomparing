@@ -5,12 +5,12 @@
 
 namespace Utils
 {
-  void CreateDictionary(const int                           pNbOfWords,
-                        const String&                       pAlphabet,
-                        std::unordered_map<String, String>& pDictionary);
+  void CreateDictionary(const int            pNbOfWords,
+                        const String&        pAlphabet,
+                        std::vector<String>& pDictionary);
 
-  void SaveDictionar(const String&                             pPath,
-                     const std::unordered_map<String, String>& pDictionary);
+  void SaveDictionar(const String&              pPath,
+                     const std::vector<String>& pDictionary);
 }
 
 #endif
