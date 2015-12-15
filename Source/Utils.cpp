@@ -38,7 +38,7 @@ void Utils::CreateDictionary(const int       pNbOfWords,
 {
   const Char firstSymbol = pAlphabet[0];
   const Char lastSymbol = pAlphabet[pAlphabet.length() - 1];
-  const int minLength = 5;
+  const int minLength = 6;
 
   String word(minLength, firstSymbol);
   for (int i = 0; i < pNbOfWords;)

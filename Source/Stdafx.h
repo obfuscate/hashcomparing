@@ -2,9 +2,11 @@
 #define PRECOMPILED_HEADER
 
 #include <algorithm>
+#include <array>
 #include <cstdlib>
 #include <iostream>
 #include <map>
+#include <queue>
 #include <random>
 #include <set>
 #include <string>
