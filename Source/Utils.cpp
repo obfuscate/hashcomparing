@@ -36,6 +36,7 @@ void Utils::CreateDictionary(const int       pNbOfWords,
                              const String&   pAlphabet,
                              vector<String>& rDictionary)
 {
+  rDictionary.clear();
   const Char firstSymbol = pAlphabet[0];
   const Char lastSymbol = pAlphabet[pAlphabet.length() - 1];
   const int minLength = 6;
@@ -60,4 +61,14 @@ void Utils::CreateDictionary(const int       pNbOfWords,
 
     word = String(word.length() + 1, firstSymbol);
   }
+}
+
+/**
+ * Function : GetSecnds
+ * Purpose  :
+ */
+double Utils::GetSeconds(const clock_t pStart,
+                         const clock_t pFinish)
+{
+  return (double)(pFinish - pStart) / CLOCKS_PER_SEC;
 }

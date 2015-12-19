@@ -11,6 +11,9 @@ namespace Utils
 
   void SaveDictionar(const String&              pPath,
                      const std::vector<String>& pDictionary);
+
+  double GetSeconds(const clock_t pStart,
+                    const clock_t pFinish);
 }
 
 #endif

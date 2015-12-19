@@ -7,15 +7,15 @@ class AcyclicGraph
 {
 public:
   void Build(const std::vector<String>& pDictionary);
-  int Hash(const String& pWord);
+  int Hash(const String& pWord) const;
 
 protected:
   //! Builds tables T1 and T2.
   void BuildFunctionTables(const std::vector<String>& pDictionary);
   void BuildTableG();
 
-  int f1(const String& pWord);
-  int f2(const String& pWord);
+  int f1(const String& pWord) const;
+  int f2(const String& pWord) const;
 
   bool IsAcyclic();
 

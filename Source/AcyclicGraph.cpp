@@ -1,5 +1,6 @@
 #include "Stdafx.h"
 #include "AcyclicGraph.h"
+#include "IntRandom.h"
 
 /**
  * Function : Build
@@ -16,7 +17,7 @@ void AcyclicGraph::Build(const std::vector<String>& pDictionary)
  * Function : Hash
  * Purpose  :
  */
-int AcyclicGraph::Hash(const String& pWord)
+int AcyclicGraph::Hash(const String& pWord) const
 {
   return (mTableG[f1(pWord)] + mTableG[f2(pWord)]) % mNbOfEdges;
 }
@@ -118,15 +119,7 @@ void AcyclicGraph::BuildFunctionTables(const std::vector<String>& pDictionary)
   // Fill tables.
   mTmpDictionary = &pDictionary;
 
-  // init RNG
-  std::array<int, std::mt19937::state_size> seeds;
-  std::random_device rnd;
-  std::generate_n(seeds.data(), seeds.size(), std::ref(rnd));
-  std::seed_seq seq(std::begin(seeds), std::end(seeds));
-  std::mt19937 gen(seq);
-
-  // get random number
-  std::uniform_int_distribution<int> distr(0, mNbOfVertex);
+  IntRandom rnd(0, mNbOfVertex);
 
   while (true)
   {
@@ -135,8 +128,8 @@ void AcyclicGraph::BuildFunctionTables(const std::vector<String>& pDictionary)
       std::set<Char>::iterator it = alphabet.begin();
       for (int j = 0; j < nbOfColumns; ++j, ++it)
       {
-        mTable1[i][*it] = distr(gen);
-        mTable2[i][*it] = distr(gen);
+        mTable1[i][*it] = rnd.Next();
+        mTable2[i][*it] = rnd.Next();
       }
     }
 
@@ -225,13 +218,13 @@ bool AcyclicGraph::IsAcyclic()
  * Function : f1
  * Purpose  :
  */
-int AcyclicGraph::f1(const String& pWord)
+int AcyclicGraph::f1(const String& pWord) const
 {
   int result = 0;
 
   for (int i = 0; i < mMinLength; ++i)
   {
-    result += mTable1[i][pWord[i]];
+    result += mTable1[i].at(pWord[i]);
   }
 
   return result % mNbOfVertex;
@@ -241,13 +234,13 @@ int AcyclicGraph::f1(const String& pWord)
  * Function : f2
  * Purpose  :
  */
-int AcyclicGraph::f2(const String& pWord)
+int AcyclicGraph::f2(const String& pWord) const
 {
   int result = 0;
 
   for (int i = 0; i < mMinLength; ++i)
   {
-    result += mTable2[i][pWord[i]];
+    result += mTable2[i].at(pWord[i]);
   }
 
   return result % mNbOfVertex;
